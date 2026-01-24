@@ -85,11 +85,13 @@ section.imagem > p {
 
 section#img01 {
     background-image: url('../desafio.cordel/imagens/background001.jpg');
-    background-position: right center;
+    background-position: right bottom;
+    background-size: cover;
 }
 
 section#img02 {
     background-image: url('../desafio.cordel/imagens/background002.jpg');
+    background-position: right;
 }
 
 footer {
