@@ -55,7 +55,11 @@ section{
     line-height: 2em;
     padding-left: 30px;
     font-family: var(--font3);
-    font-size: 3,5vw;
+    font-size: 3.5vw;
+}
+
+section > p{
+    padding-bottom: 2em;
 }
 
 section.normal {
@@ -66,13 +70,26 @@ section.normal {
 section.imagem {
     background-color: rgba(0, 0, 0, 0.541);
     color: rgb(255, 255, 255);
+    box-shadow: inset 0 0 10px black;
+     background-size: cover;
+     background-attachment: fixed;
 
 }
 
 section.imagem > p {
     display: inline-block;
     padding: 5px;
-    background-color: rgba(0, 0, 0, 0.253);
+    background-color: rgba(0, 0, 0, 0.521);
+    text-shadow: 1px 1px 0px black;
+}
+
+section#img01 {
+    background-image: url('../desafio.cordel/imagens/background001.jpg');
+    background-position: right center;
+}
+
+section#img02 {
+    background-image: url('../desafio.cordel/imagens/background002.jpg');
 }
 
 footer {
