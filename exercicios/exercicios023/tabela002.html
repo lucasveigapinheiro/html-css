@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tabelas</title>
+    <style>
+        * {
+            margin: 0px;
+            padding: 0px;
+        }
+
+        body {
+            color: rgb(0, 0, 0);
+            font-family: Helvetica, sans-serif;
+            background-color: rgb(241, 241, 241);
+        }
+
+        header {
+            text-align: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 50px 30px;
+            color: white;
+            margin: 0px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            border-bottom: 4px solid #5a67d8;
+            position: relative;
+            overflow: hidden;
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"><path d="M0,50 Q300,0 600,50 T1200,50 L1200,120 L0,120 Z" fill="rgba(255,255,255,0.1)"></path></svg>');
+            background-size: cover;
+            opacity: 0.5;
+        }
+
+        header h1 {
+            margin-bottom: 15px;
+            font-size: 42px;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+            position: relative;
+            z-index: 1;
+        }
+
+        header p {
+            font-size: 18px;
+            font-weight: 300;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+            margin: 0;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            margin: 30px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th,
+        td {
+            border: none;
+            padding: 15px;
+            text-align: center;
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+        }
+
+        caption {
+            font-size: 22px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            margin-top: 0;
+            border-radius: 8px 8px 0 0;
+            text-align: center;
+        }
+
+        thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        tbody>tr:nth-child(odd) {
+            background-color: #f8f9fa;
+        }
+
+        tbody>tr:nth-child(even) {
+            background-color: white;
+        }
+
+        tbody>tr:hover {
+            background-color: #e8e9ff;
+            transition: background-color 0.3s ease;
+        }
+
+        a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border-bottom: 2px solid transparent;
+        }
+
+        a:hover {
+            color: #764ba2;
+            border-bottom: 2px solid #764ba2;
+            padding-bottom: 2px;
+        }
+
+        footer {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 30px;
+            margin-top: 50px;
+            box-shadow: 0 -8px 16px rgba(0, 0, 0, 0.1);
+            border-top: 4px solid #5a67d8;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            right: 0;
+            height: 20px;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 60"><path d="M0,30 Q300,0 600,30 T1200,30 L1200,0 L0,0 Z" fill="rgba(255,255,255,0.1)"></path></svg>');
+            background-size: cover;
+        }
+
+        footer p {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 10px 0;
+            position: relative;
+            z-index: 1;
+            opacity: 0.95;
+        }
+
+        footer .author {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        footer .info {
+            font-size: 14px;
+            opacity: 0.85;
+            margin-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            padding-top: 15px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>uso de tabelas grandes</h1>
+        <p>a seguir uma tabla grande com dados populacionais</p>
+    </header>
+    <table>
+        <caption>Estimativa Populacional dos Estados (2024–2025)</caption>
+        <thead>
+            <tr>
+                <th>colocação</th>
+                <th>Unidade federativa</th>
+                <th>Estimativa 2025</th>
+                <th>Estimativa 2024</th>
+                <th>Variação absoluta</th>
+                <th>Variação %</th>
+                <th>% do total (2025)</th>
+                <th>País comparável</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td><a href="https://www.saopaulo.sp.gov.br" target="_blank">São Paulo</a></td>
+                <td>46.081.801</td>
+                <td>45.973.194</td>
+                <td>+108.607</td>
+                <td>+0,24%</td>
+                <td>21,59%</td>
+                <td>Argentina (45.851.378)</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td><a href="https://www.mg.gov.br" target="_blank">Minas Gerais</a></td>
+                <td>21.393.441</td>
+                <td>21.322.691</td>
+                <td>+70.750</td>
+                <td>+0,33%</td>
+                <td>10,02%</td>
+                <td>Chade (21.003.705)</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td><a href="https://www.rj.gov.br" target="_blank">Rio de Janeiro</a></td>
+                <td>17.223.547</td>
+                <td>17.219.679</td>
+                <td>+3.868</td>
+                <td>+0,02%</td>
+                <td>8,07%</td>
+                <td>Zimbabwe (16.950.795)</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td><a href="https://www.bahia.gov.br" target="_blank">Bahia</a></td>
+                <td>14.870.907</td>
+                <td>14.850.513</td>
+                <td>+20.394</td>
+                <td>+0,14%</td>
+                <td>6,97%</td>
+                <td>Benim (14.814.460)</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td><a href="https://www.pr.gov.br" target="_blank">Paraná</a></td>
+                <td>11.890.517</td>
+                <td>11.824.665</td>
+                <td>+65.852</td>
+                <td>+0,56%</td>
+                <td>5,57%</td>
+                <td>Haiti (11.906.095)</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td><a href="https://www.rs.gov.br" target="_blank">Rio Grande do Sul</a></td>
+                <td>11.233.263</td>
+                <td>11.229.915</td>
+                <td>+3.348</td>
+                <td>+0,03%</td>
+                <td>5,26%</td>
+                <td>Emirados Árabes Unidos (11.346.000)</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td><a href="https://www.pe.gov.br" target="_blank">Pernambuco</a></td>
+                <td>9.562.007</td>
+                <td>9.539.029</td>
+                <td>+22.978</td>
+                <td>+0,24%</td>
+                <td>4,48%</td>
+                <td>Israel (9.517.181)</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td><a href="https://www.ceara.gov.br" target="_blank">Ceará</a></td>
+                <td>9.268.836</td>
+                <td>9.233.656</td>
+                <td>+35.180</td>
+                <td>+0,38%</td>
+                <td>4,34%</td>
+                <td>Áustria (9.113.574)</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td><a href="https://www.pa.gov.br" target="_blank">Pará</a></td>
+                <td>8.711.196</td>
+                <td>8.664.306</td>
+                <td>+46.890</td>
+                <td>+0,54%</td>
+                <td>4,08%</td>
+                <td>Serra Leoa (8.819.794)</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td><a href="https://www.sc.gov.br" target="_blank">Santa Catarina</a></td>
+                <td>8.187.029</td>
+                <td>8.058.441</td>
+                <td>+128.588</td>
+                <td>+1,60%</td>
+                <td>3,84%</td>
+                <td>Laos (7.873.046)</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td><a href="https://www.goias.gov.br" target="_blank">Goiás</a></td>
+                <td>7.423.629</td>
+                <td>7.350.483</td>
+                <td>+73.146</td>
+                <td>+1,00%</td>
+                <td>3,48%</td>
+                <td>Líbia (7.458.555)</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td><a href="https://www.ma.gov.br" target="_blank">Maranhão</a></td>
+                <td>7.018.211</td>
+                <td>7.010.960</td>
+                <td>+7.251</td>
+                <td>+0,10%</td>
+                <td>3,29%</td>
+                <td>Paraguai (7.013.078)</td>
+            </tr>
+            <tr>
+                <td>13</td>
+                <td><a href="https://www.amazonas.am.gov.br" target="_blank">Amazonas</a></td>
+                <td>4.321.616</td>
+                <td>4.281.209</td>
+                <td>+40.407</td>
+                <td>+0,94%</td>
+                <td>2,02%</td>
+                <td>Panamá (4.571.189)</td>
+            </tr>
+            <tr>
+                <td>14</td>
+                <td><a href="https://www.paraiba.pb.gov.br" target="_blank">Paraíba</a></td>
+                <td>4.164.468</td>
+                <td>4.145.040</td>
+                <td>+19.428</td>
+                <td>+0,47%</td>
+                <td>1,95%</td>
+                <td>Croácia (3.848.160)</td>
+            </tr>
+            <tr>
+                <td>15</td>
+                <td><a href="https://www.es.gov.br" target="_blank">Espírito Santo</a></td>
+                <td>4.126.854</td>
+                <td>4.102.129</td>
+                <td>+24.725</td>
+                <td>+0,60%</td>
+                <td>1,93%</td>
+                <td>Croácia (3.848.160)</td>
+            </tr>
+            <tr>
+                <td>16</td>
+                <td><a href="https://www.mt.gov.br" target="_blank">Mato Grosso</a></td>
+                <td>3.893.659</td>
+                <td>3.836.399</td>
+                <td>+57.260</td>
+                <td>+1,49%</td>
+                <td>1,82%</td>
+                <td>Croácia (3.848.160)</td>
+            </tr>
+        </tbody>
+    </table>
+    <footer>
+        <p class="author">👨‍💻 Lucas Veiga Pinheiro</p>
+        <p class="info">Tabela de Dados Populacionais | Brasil 2024-2025</p>
+        <p class="info">&copy; 2025 - Todos os direitos reservados</p>
+    </footer>
+</body>
+
+</html>

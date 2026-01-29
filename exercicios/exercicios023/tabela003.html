@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>minha tabela</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        table {
+            width: 500px;
+            border-collapse: collapse;
+        }
+
+        td,
+        th {
+            border: 1px solid black;
+            padding: 10px;
+        }
+
+        thead,
+        tfoot {
+            background-color: gray;
+            color: white;
+        }
+        td.num {
+            text-align: right;
+        }
+        td#num{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>uso de tabelas</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>estado</th>
+                <th>população</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>São Paulo</td>
+                <td class="num">46.081.801</td>
+            </tr>
+            <tr>
+                <td>Minas Gerais</td>
+                <td class="num">21.411.923</td>
+            </tr>
+            <tr>
+                <td>Rio de Janeiro</td>
+                <td class="num">16.718.956</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th>Total</th>
+                <td id="num"><strong>84.212.680</strong></td>
+            </tr>
+        </tfoot>
+    </table>
+</body>
+
+</html>
