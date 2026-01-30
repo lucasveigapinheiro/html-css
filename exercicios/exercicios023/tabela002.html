@@ -84,6 +84,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             border-radius: 8px;
             overflow: hidden;
+            position: relative;
         }
 
         th,
@@ -128,7 +129,7 @@
         }
 
         tbody>tr:nth-child(odd) {
-            background-color: #f8faf9;
+            background-color: #2b312e0c;
         }
 
         tbody>tr:nth-child(even) {
@@ -416,6 +417,35 @@
 
             a {
                 font-size: 11px;
+            }
+        }
+
+        /* Ajustes para sticky header em telas menores */
+        @media (max-width: 768px) {
+            thead th {
+                top: 52px;
+            }
+
+            caption {
+                top: 0;
+            }
+
+            .table-container {
+                max-height: 55vh;
+            }
+        }
+
+        @media (max-width: 480px) {
+            thead th {
+                top: 48px;
+            }
+
+            caption {
+                top: 0;
+            }
+
+            .table-container {
+                max-height: 48vh;
             }
         }
     </style>
