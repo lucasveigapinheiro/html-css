@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iframe 003</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-attachment: fixed;
+            color: #333;
+            min-height: 100vh;
+            padding: 40px 20px;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(255, 255, 255, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1 {
+            color: white;
+            margin-bottom: 30px;
+            font-size: 3em;
+            font-weight: 700;
+            text-align: center;
+            text-shadow: 2px 4px 8px rgba(0, 0, 0, 0.3);
+            letter-spacing: -0.5px;
+            animation: fadeInDown 0.8s ease-out;
+        }
+
+        p {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 25px 30px;
+            margin-bottom: 30px;
+            border-radius: 16px;
+            line-height: 1.7;
+            box-shadow:
+                0 8px 32px rgba(0, 0, 0, 0.1),
+                0 2px 8px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 1.05em;
+            animation: fadeInUp 0.8s ease-out;
+        }
+
+        .nav-container {
+            margin: 40px 0;
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+
+        ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        li {
+            position: relative;
+        }
+
+        li a {
+            display: inline-block;
+            padding: 16px 32px;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 1em;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow:
+                0 8px 25px rgba(240, 147, 251, 0.3),
+                0 4px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        li a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            transition: left 0.6s ease;
+        }
+
+        li a:hover::before {
+            left: 100%;
+        }
+
+        li a:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow:
+                0 12px 35px rgba(240, 147, 251, 0.4),
+                0 6px 25px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+        }
+
+        li a:active {
+            transform: translateY(-2px) scale(1.02);
+        }
+
+        .iframe-container {
+            margin: 40px 0;
+            animation: fadeInUp 0.8s ease-out 0.4s both;
+        }
+
+        iframe#tela {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 20px;
+            box-shadow:
+                0 20px 60px rgba(0, 0, 0, 0.3),
+                0 8px 25px rgba(0, 0, 0, 0.15);
+            display: block;
+            background: white;
+            transition: all 0.3s ease;
+        }
+
+        iframe#tela:hover {
+            box-shadow:
+                0 25px 70px rgba(0, 0, 0, 0.35),
+                0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+                margin-bottom: 25px;
+            }
+
+            p {
+                padding: 20px 25px;
+                font-size: 1em;
+            }
+
+            ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 15px;
+                gap: 15px;
+            }
+
+            li a {
+                width: 100%;
+                max-width: 300px;
+                text-align: center;
+                padding: 14px 28px;
+                font-size: 0.95em;
+            }
+
+            iframe#tela {
+                height: 450px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8em;
+            }
+
+            iframe#tela {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>faça uma escolha</h1>
+        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis fuga ea veniam saepe rerum officiis eum
+            obcaecati. Facere omnis deserunt voluptates officia incidunt sit, dignissimos explicabo itaque praesentium
+            fugiat?</p>
+
+        <div class="nav-container">
+            <ul>
+                <li><a href="pagina001.html" target="frame">primeira pagina</a></li>
+                <li><a href="iframe.html" target="frame">segunda pagina</a></li>
+                <li><a href="iframe002.html" target="frame">terceira pagina</a></li>
+            </ul>
+        </div>
+
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quos, molestiae inventore officia magni consequatur
+            voluptate. Distinctio atque dolore voluptate quaerat molestias eum ipsam laudantium cumque voluptas! Saepe
+            exercitationem suscipit blanditiis!</p>
+
+        <div class="iframe-container">
+            <iframe src="" id="tela" name="frame">
+                <p>infelizmente seu navegador não suporta iframes</p>
+            </iframe>
+        </div>
+
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Suscipit ut facilis culpa possimus sapiente
+            accusamus
+            fuga quae ipsum. Id, doloremque qui! Tempore, iure accusamus. Doloremque provident veritatis sint quo
+            unde?Lorem
+            ipsum, dolor sit amet consectetur adipisicing elit. Eos quae placeat culpa eveniet, numquam, similique
+            expedita
+            vero commodi, reiciendis ipsum rem cupiditate obcaecati. Sapiente sit atque quo eveniet expedita doloremque.
+        </p>
+    </div>
+</body>
+
+</html>
