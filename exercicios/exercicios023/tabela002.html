@@ -23,11 +23,21 @@
             padding: 0 10px;
         }
 
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-            margin: 30px 0;
-        }
+       .table-container {
+    width: 100%;
+    max-height: 400px;   /* limite de altura */
+    overflow-x: auto;
+    overflow-y: auto;   /* só cria rolagem se ultrapassar */
+    margin: 30px 0;
+    border-radius: 8px;
+}
+
+            thead th {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
 
         header {
             text-align: center;
@@ -415,6 +425,138 @@
                 padding-top: 10px;
             }
 
+            article p {
+                font-size: 14px;
+                text-align: left;
+            }
+
+            article h3 {
+                font-size: 18px;
+                margin-top: 20px;
+            }
+
+            .video-container img {
+                max-width: 100%;
+            }
+        }
+
+        /* Responsivo para tablets e celulares */
+        @media (max-width: 768px) {
+            header {
+                padding: 35px 20px;
+            }
+
+            header h1 {
+                font-size: 32px;
+                margin-bottom: 10px;
+            }
+
+            header p {
+                font-size: 16px;
+            }
+
+            table {
+                margin: 20px 0;
+                font-size: 14px;
+            }
+
+            th,
+            td {
+                padding: 12px 8px;
+                font-size: 13px;
+            }
+
+            caption {
+                font-size: 18px;
+                padding: 12px;
+            }
+
+            footer {
+                padding: 30px 20px;
+                margin-top: 40px;
+            }
+
+            footer p {
+                font-size: 14px;
+                margin: 8px 0;
+            }
+
+            footer .author {
+                font-size: 16px;
+                margin-bottom: 8px;
+            }
+
+            footer .info {
+                font-size: 12px;
+                margin-top: 12px;
+                padding-top: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 0 5px;
+            }
+
+            header {
+                padding: 25px 15px;
+                margin: 0 -5px;
+            }
+
+            header h1 {
+                font-size: 24px;
+                margin-bottom: 8px;
+            }
+
+            header p {
+                font-size: 14px;
+            }
+
+            .table-container {
+                margin: 15px -5px;
+                padding: 0 5px;
+                border-radius: 8px;
+            }
+
+            table {
+                font-size: 12px;
+                min-width: 500px;
+                margin: 0;
+            }
+
+            th,
+            td {
+                padding: 10px 5px;
+                font-size: 11px;
+                word-wrap: break-word;
+            }
+
+            caption {
+                font-size: 16px;
+                padding: 10px;
+            }
+
+            footer {
+                padding: 25px 15px;
+                margin: 30px -5px 0 -5px;
+            }
+
+            footer p {
+                font-size: 12px;
+                margin: 6px 0;
+            }
+
+            footer .author {
+                font-size: 14px;
+                margin-bottom: 6px;
+            }
+
+            footer .info {
+                font-size: 11px;
+                margin-top: 10px;
+                padding-top: 10px;
+            }
+
             a {
                 font-size: 11px;
             }
@@ -430,9 +572,7 @@
                 top: 0;
             }
 
-            .table-container {
-                max-height: 55vh;
-            }
+            .table-container {}
         }
 
         @media (max-width: 480px) {
@@ -444,9 +584,7 @@
                 top: 0;
             }
 
-            .table-container {
-                max-height: 48vh;
-            }
+            .table-container {}
         }
     </style>
 </head>
@@ -647,38 +785,44 @@
             A tabela acima apresenta as estimativas populacionais dos estados brasileiros, permitindo uma comparação não
             apenas entre os estados, mas também com países do mundo inteiro. Essa perspectiva é interessante pois mostra
             a relevância econômica e demográfica de cada estado quando comparado ao cenário global.
-        </p>
 
-        <h3>🌍 Entendendo os Dados</h3>
-        <p>
-            As variações percentuais observadas nos dados de 2025 em relação a 2024 mostram que, embora o crescimento
-            populacional brasileiro seja moderado, existem diferenças significativas entre os estados. Alguns estados
-            como Santa Catarina e Goiás apresentam crescimento mais acelerado, enquanto outros, como Rio de Janeiro, têm
-            crescimento praticamente estagnado.
-        </p>
+            <h3>🌍 Entendendo os Dados</h3>
+            <p>
+                As variações percentuais observadas nos dados de 2025 em relação a 2024 mostram que, embora o
+                crescimento
+                populacional brasileiro seja moderado, existem diferenças significativas entre os estados. Alguns
+                estados
+                como Santa Catarina e Goiás apresentam crescimento mais acelerado, enquanto outros, como Rio de Janeiro,
+                têm
+                crescimento praticamente estagnado.
+            </p>
 
-        <div class="video-container">
-            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=700&q=80"
-                alt="Mapa e análise de dados demográficos">
-        </div>
+            <div class="video-container">
+                <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=700&q=80"
+                    alt="Mapa e análise de dados demográficos">
+            </div>
 
-        <h3>📈 Importância do Monitoramento Demográfico</h3>
-        <p>
-            Compreender a dinâmica populacional é essencial para o planejamento urbano, políticas públicas e
-            investimentos empresariais. Os dados de crescimento e distribuição populacional ajudam gestores e
-            pesquisadores a entender melhor as demandas por infraestrutura, educação, saúde e emprego em cada região do
-            Brasil.
-        </p>
-        <p>
-            Através das informações apresentadas, é possível identificar regiões em expansão e áreas que já atingiram
-            estabilidade demográfica, permitindo assim uma alocação mais eficiente de recursos e melhor compreensão da
-            realidade socioeconômica brasileira.
-        </p>
-    </article>
-    <footer>
-        <p class="author">👨‍💻 Lucas Veiga Pinheiro</p>
-        <p class="info">Tabela de Dados Populacionais | Brasil 2024-2025</p>
-        <p class="info">&copy; 2025 - Todos os direitos reservados</p>
-    </footer>
+            <h3>📈 Importância do Monitoramento Demográfico</h3>
+            <p>
+                Compreender a dinâmica populacional é essencial para o planejamento urbano, políticas públicas e
+                investimentos empresariais. Os dados de crescimento e distribuição populacional ajudam gestores e
+                pesquisadores a entender melhor as demandas por infraestrutura, educação, saúde e emprego em cada região
+                do
+                Brasil.
+            </p>
+            <p>
+                Através das informações apresentadas, é possível identificar regiões em expansão e áreas que já
+                atingiram
+                estabilidade demográfica, permitindo assim uma alocação mais eficiente de recursos e melhor compreensão
+                da
+                realidade socioeconômica brasileira.
+            </p>
+        </article>
+        <footer>
+            <p class="author">👨‍💻 Lucas Veiga Pinheiro</p>
+            <p class="info">Tabela de Dados Populacionais | Brasil 2024-2025</p>
+            <p class="info">&copy; 2025 - Todos os direitos reservados</p>
+        </footer>
 </body>
+
 </html>
