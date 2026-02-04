@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario2</title>
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔐</text></svg>">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            color: white;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            animation: fadeInDown 0.8s ease;
+        }
+
+        form {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            animation: fadeInUp 0.8s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        form:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        fieldset {
+            border: 2px solid #667eea;
+            border-radius: 15px;
+            padding: 25px;
+            background: rgba(102, 126, 234, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        fieldset:hover {
+            border-color: #764ba2;
+            background: rgba(102, 126, 234, 0.1);
+        }
+
+        legend {
+            color: #667eea;
+            font-weight: 700;
+            font-size: 1.3rem;
+            padding: 0 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        p {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        input[type="text"],
+        input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input[type="text"]:focus,
+        input[type="password"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        input[type="text"]:hover,
+        input[type="password"]:hover {
+            border-color: #764ba2;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin: 5px;
+        }
+
+        input[type="submit"] {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        input[type="submit"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        input[type="reset"] {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+        }
+
+        input[type="reset"]:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(245, 87, 108, 0.4);
+        }
+
+        input[type="submit"]:active,
+        input[type="reset"]:active {
+            transform: translateY(-1px);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            form {
+                padding: 30px 25px;
+            }
+
+            fieldset {
+                padding: 20px 15px;
+            }
+
+            input[type="submit"],
+            input[type="reset"] {
+                width: 100%;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>teste de formulario</h1>
+    <form action="resultado002.html" method="post" autocomplete="on" id="loginForm">
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <p><label for="iusu">usuario:</label>
+                <input type="text" name="usu" id="iusu" required minlength="5" maxlength="15" size="8"
+                    placeholder="usuario" autocomplete="username">
+            </p>
+            <p><label for="isen">senha:</label>
+                <input type="password" name="sen" id="isen" required maxlength="10" minlength="4" size="9"
+                    placeholder="minimo 4 letras" autocomplete="current-password">
+            </p>
+            <p>
+                <input type="submit" value="enviar">
+                <input type="reset" value="limpar">
+            </p>
+        </fieldset>
+    </form>
+
+    <script>
+        // Salvar dados no sessionStorage antes do envio
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            const usuario = document.getElementById('iusu').value;
+            const senha = document.getElementById('isen').value;
+
+            // Salvar dados no sessionStorage
+            sessionStorage.setItem('formUsuario', usuario);
+            sessionStorage.setItem('formSenha', senha);
+        });
+    </script>
+</body>
+
+</html>
