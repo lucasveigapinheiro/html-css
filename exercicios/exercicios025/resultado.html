@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado do Cadastro</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✅</text></svg>">
+    <style>
+        * {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 600px;
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .success-icon {
+            font-size: 4rem;
+            text-align: center;
+            margin-bottom: 20px;
+            animation: bounceIn 1s ease;
+        }
+
+        h1 {
+            color: #11998e;
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        .data-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #11998e;
+            animation: slideInLeft 0.8s ease;
+        }
+
+        .data-label {
+            font-weight: 600;
+            color: #333;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
+        }
+
+        .data-value {
+            color: #11998e;
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .back-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+            color: white;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 10px;
+            font-weight: 600;
+            text-align: center;
+            margin-top: 30px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .back-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(17, 153, 142, 0.4);
+        }
+
+        .timestamp {
+            text-align: center;
+            color: #666;
+            font-size: 0.9rem;
+            margin-top: 20px;
+            font-style: italic;
+        }
+
+        .error-card {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            border-left-color: #e74c3c;
+        }
+
+        .error-card .data-value {
+            color: #e74c3c;
+        }
+
+        .success-card {
+            background: linear-gradient(135deg, #d4fc79 0%, #96e6a1 100%);
+            border-left-color: #27ae60;
+        }
+
+        .success-card .data-value {
+            color: #27ae60;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1.05);
+            }
+            70% {
+                transform: scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 15px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .container {
+                padding: 30px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="success-icon">✅</div>
+        <h1>Cadastro Realizado com Sucesso!</h1>
+        
+        <div id="dados-container">
+            <!-- Os dados serão inseridos aqui pelo JavaScript -->
+        </div>
+        
+        <div class="timestamp" id="timestamp">
+            <!-- Data e hora serão inseridas aqui pelo JavaScript -->
+        </div>
+        
+        <div style="text-align: center;">
+            <a href="formularios.html" class="back-button">Voltar ao Formulário</a>
+        </div>
+    </div>
+
+    <script>
+        // Função para obter parâmetros da URL
+        function obterParametrosURL() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                nome: params.get('nome'),
+                sobrenome: params.get('sobrenome')
+            };
+        }
+
+        // Função para escapar HTML (segurança)
+        function escaparHTML(texto) {
+            const div = document.createElement('div');
+            div.textContent = texto;
+            return div.innerHTML;
+        }
+
+        // Função para formatar data e hora
+        function formatarDataHora() {
+            const agora = new Date();
+            const dia = String(agora.getDate()).padStart(2, '0');
+            const mes = String(agora.getMonth() + 1).padStart(2, '0');
+            const ano = agora.getFullYear();
+            const horas = String(agora.getHours()).padStart(2, '0');
+            const minutos = String(agora.getMinutes()).padStart(2, '0');
+            const segundos = String(agora.getSeconds()).padStart(2, '0');
+            
+            return `${dia}/${mes}/${ano} ${horas}:${minutos}:${segundos}`;
+        }
+
+        // Função principal para processar e exibir os dados
+        function processarDados() {
+            const dados = obterParametrosURL();
+            const container = document.getElementById('dados-container');
+            
+            if (dados.nome || dados.sobrenome) {
+                // Tem dados - exibir informações
+                const nome = escaparHTML(dados.nome || 'Não informado');
+                const sobrenome = escaparHTML(dados.sobrenome || 'Não informado');
+                const nomeCompleto = (nome + ' ' + sobrenome).trim();
+                
+                let html = '';
+                
+                // Card Nome
+                html += '<div class="data-card">';
+                html += '<div class="data-label">Nome:</div>';
+                html += '<div class="data-value">' + nome + '</div>';
+                html += '</div>';
+                
+                // Card Sobrenome
+                html += '<div class="data-card">';
+                html += '<div class="data-label">Sobrenome:</div>';
+                html += '<div class="data-value">' + sobrenome + '</div>';
+                html += '</div>';
+                
+                // Card Nome Completo
+                html += '<div class="data-card">';
+                html += '<div class="data-label">Nome Completo:</div>';
+                html += '<div class="data-value">' + nomeCompleto + '</div>';
+                html += '</div>';
+                
+                // Card Status
+                html += '<div class="data-card success-card">';
+                html += '<div class="data-label">Status:</div>';
+                html += '<div class="data-value">Dados Salvos com Sucesso!</div>';
+                html += '</div>';
+                
+                container.innerHTML = html;
+                
+            } else {
+                // Não tem dados - exibir erro
+                let html = '';
+                html += '<div class="data-card error-card">';
+                html += '<div class="data-label">Erro:</div>';
+                html += '<div class="data-value">Nenhum dado recebido!</div>';
+                html += '</div>';
+                
+                container.innerHTML = html;
+            }
+            
+            // Atualizar timestamp
+            document.getElementById('timestamp').textContent = 'Data e Hora: ' + formatarDataHora();
+        }
+
+        // Executar quando a página carregar
+        document.addEventListener('DOMContentLoaded', processarDados);
+    </script>
+</body>
+</html>
