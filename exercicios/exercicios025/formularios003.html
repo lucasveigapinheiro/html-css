@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario 003</title>
+</head>
+<body>
+    <h1>teste de formulario</h1>
+    <form action="resultado003.html" method="get" target="_blank" autocomplete="on">
+        <p>
+            <label for="inome">Nome:</label>
+            <input type="text" name="nome" id="inome" required maxlength="30" placeholder="nome completo">
+        </p>
+        <p>
+            <label for="imedia" >média:</label>
+            <input type="number" name="media" id="imedia"  size="25"required min="0" max="10" placeholder="0 a 10" step="0.1" value="5">
+        </p>
+        <p>
+            <label for="imes">periodo letivo:</label>   
+             <input type="month" name="mês" id="imes" required
+        </p>
+        <p>
+            <label for="idia">dia:</label>
+            <input type="date" name="dia" id="idia" required>
+        </p>
+        <label for="ihora">hora:</label>
+        <p>
+            <input type="time" name="hora" id="ihora" required>
+        </p>
+        <p>
+            <input type="submit" value="enviar">
+            <input type="reset" value="limpar">
+        </p>
+    </form>    
+</body>
+</html>
