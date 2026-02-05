@@ -217,35 +217,13 @@
     </div>
 
     <script>
-        // Função para processar dados do formulário POST
-        function obterDadosPOST() {
-            // Para método POST, precisamos capturar os dados do formulário que foi enviado
-            // Como não temos acesso direto aos dados POST no frontend, vamos usar uma abordagem alternativa
-            const urlParams = new URLSearchParams(window.location.search);
-
-            // Se houver parâmetros na URL (fallback para GET)
-            if (urlParams.has('usu') || urlParams.has('sen')) {
-                return {
-                    usuario: urlParams.get('usu'),
-                    senha: urlParams.get('sen')
-                };
-            }
-
-            // Tentar obter dados do sessionStorage (se foram salvos antes do envio)
-            const usuario = sessionStorage.getItem('formUsuario');
-            const senha = sessionStorage.getItem('formSenha');
-
-            if (usuario || senha) {
-                // Limpar sessionStorage após uso
-                sessionStorage.removeItem('formUsuario');
-                sessionStorage.removeItem('formSenha');
-                return {
-                    usuario: usuario,
-                    senha: senha
-                };
-            }
-
-            return { usuario: null, senha: null };
+        // Função para obter parâmetros da URL (GET)
+        function obterDadosGET() {
+            const params = new URLSearchParams(window.location.search);
+            return {
+                usuario: params.get('usu'),
+                senha: params.get('sen')
+            };
         }
 
         // Função para escapar HTML (segurança)
@@ -276,7 +254,7 @@
 
         // Função principal para processar e exibir os dados
         function processarDados() {
-            const dados = obterDadosPOST();
+            const dados = obterDadosGET();
             const container = document.getElementById('dados-container');
 
             if (dados.usuario || dados.senha) {
@@ -308,7 +286,7 @@
                 // Card Método
                 html += '<div class="data-card" style="background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%); border-left-color: #6c5ce7;">';
                 html += '<div class="data-label">Método:</div>';
-                html += '<div class="data-value" style="color: #6c5ce7;">POST</div>';
+                html += '<div class="data-value" style="color: #6c5ce7;">GET</div>';
                 html += '</div>';
 
                 // Card Segurança

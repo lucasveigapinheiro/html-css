@@ -201,7 +201,7 @@
 
 <body>
     <h1>teste de formulario</h1>
-    <form action="resultado002.html" method="post" autocomplete="on" id="loginForm">
+    <form action="resultado002.html" method="get" autocomplete="on" id="loginForm">
         <fieldset>
             <legend>Dados Pessoais</legend>
             <p><label for="iusu">usuario:</label>
@@ -218,18 +218,6 @@
             </p>
         </fieldset>
     </form>
-
-    <script>
-        // Salvar dados no sessionStorage antes do envio
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            const usuario = document.getElementById('iusu').value;
-            const senha = document.getElementById('isen').value;
-
-            // Salvar dados no sessionStorage
-            sessionStorage.setItem('formUsuario', usuario);
-            sessionStorage.setItem('formSenha', senha);
-        });
-    </script>
 </body>
 
 </html>
