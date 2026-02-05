@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Formulário 005</title>
+<head>
+<style>
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f8f8;
+        padding: 20px;
+        text-align: center;
+    }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px grey;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="reset"] {
+        background-color: red;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px grey;
+        color: white;
+        padding: 14px 20px;
+        margin: 8px 0;
+        border: none;
+        cursor: pointer;
+    }
+
+    p {
+        margin-bottom: 20px;
+    }
+
+    fieldset {
+        border-radius: 10px;
+        padding: 10px;
+        margin-bottom: 20px;
+        box-shadow: 2px 2px 5px grey;
+    }
+</style>
+</head>
+<body>
+    <h1>
+        exemplo de formualrios
+    </h1>
+    <form action="resultado003.html" method="get" autocomplete="on"></form>
+
+    <fieldset>
+        <legend>sexo</legend>
+        <input type="radio" name="sexo" id="imasc"> <label for="imasc">masculino</label>
+        <input type="radio" name="sexo" id="ifem" checked> <label for="ifem">feminino</label>
+    </fieldset>
+
+    <fieldset>
+        <legend>esportes favoritos</legend>
+        <input type="checkbox" name="esfut" id="ifutebol"> <label for="ifutebol">futebol</label>
+        <input type="checkbox" name="esvolei" id="ivolei"> <label for="ivolei">volei</label>
+        <input type="checkbox" name="esbasquete" id="ibasquete"> <label for="ibasquete">basquete</label>
+        <input type="checkbox" name="estenis" id="itenis"> <label for="itenis">tenis</label>
+    </fieldset>
+
+        <input type="submit" value="enviar">
+        <input type="reset" value="limpar">
+    </p>
+</body>
+</html>

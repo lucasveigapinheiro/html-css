@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário 004</title>
+</head>
+<body>
+    <h1>exemplo de formualrios</h1>
+    <form action="resultado003.html"method="get" autocomplete="on">
+        <p>
+            <label for="inome">Nome:</label>
+            <input type="text" name="nome" id="inome" required maxlength="30" placeholder="nome completo">
+        </p>
+    <p>
+        <label for="iemail">email:</label>
+        <input type="email" name="email" id="iemail" required autocomplete="email">
+        <p>
+            <label for="itel">telefone</label>
+            <input type="tel" name="tel" id="itel" required autocomplete="tel" pattern="^[0-9]{4,5}-[0-9]{4}$">
+        </p>
+    </p>
+    <p><input type="submit" value="enviar">
+        <input type="reset" value="limpar"></p>
+    </form>
+</body>
+</html>

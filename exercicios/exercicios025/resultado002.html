@@ -222,7 +222,9 @@
             const params = new URLSearchParams(window.location.search);
             return {
                 usuario: params.get('usu'),
-                senha: params.get('sen')
+                senha: params.get('sen'),
+                email: params.get('email'),
+                telefone: params.get('tel')
             };
         }
 
@@ -237,6 +239,31 @@
         function mascararSenha(senha) {
             if (!senha) return 'Não informada';
             return '•'.repeat(senha.length);
+        }
+
+        // Função para mascarar email
+        function mascararEmail(email) {
+            if (!email) return 'Não informado';
+            const [usuario, dominio] = email.split('@');
+            if (!usuario || !dominio) return email;
+
+            const usuarioMascarado = usuario.charAt(0) + '***' + usuario.charAt(usuario.length - 1);
+            return usuarioMascarado + '@' + dominio;
+        }
+
+        // Função para formatar telefone
+        function formatarTelefone(telefone) {
+            if (!telefone) return 'Não informado';
+            // Remove caracteres não numéricos
+            const numeros = telefone.replace(/\D/g, '');
+
+            // Formata (00) 00000-0000
+            if (numeros.length === 11) {
+                return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
+            } else if (numeros.length === 10) {
+                return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 6)}-${numeros.slice(6)}`;
+            }
+            return telefone;
         }
 
         // Função para formatar data e hora
@@ -257,30 +284,45 @@
             const dados = obterDadosGET();
             const container = document.getElementById('dados-container');
 
-            if (dados.usuario || dados.senha) {
-                // Tem dados - exibir informações
-                const usuario = escaparHTML(dados.usuario || 'Não informado');
-                const senha = escaparHTML(dados.senha || '');
-                const senhaMascarada = mascararSenha(senha);
-
+            if (dados.usuario || dados.senha || dados.email || dados.telefone) {
                 let html = '';
 
                 // Card Usuário
-                html += '<div class="data-card">';
-                html += '<div class="data-label">Usuário:</div>';
-                html += '<div class="data-value">' + usuario + '</div>';
-                html += '</div>';
+                if (dados.usuario) {
+                    html += '<div class="data-card">';
+                    html += '<div class="data-label">Usuário:</div>';
+                    html += '<div class="data-value">' + escaparHTML(dados.usuario) + '</div>';
+                    html += '</div>';
+                }
 
                 // Card Senha (mascarada)
-                html += '<div class="data-card">';
-                html += '<div class="data-label">Senha:</div>';
-                html += '<div class="data-value password-mask">' + senhaMascarada + '</div>';
-                html += '</div>';
+                if (dados.senha) {
+                    html += '<div class="data-card">';
+                    html += '<div class="data-label">Senha:</div>';
+                    html += '<div class="data-value password-mask">' + mascararSenha(dados.senha) + '</div>';
+                    html += '</div>';
+                }
+
+                // Card Email (mascarado)
+                if (dados.email) {
+                    html += '<div class="data-card">';
+                    html += '<div class="data-label">Email:</div>';
+                    html += '<div class="data-value">' + mascararEmail(dados.email) + '</div>';
+                    html += '</div>';
+                }
+
+                // Card Telefone (formatado)
+                if (dados.telefone) {
+                    html += '<div class="data-card">';
+                    html += '<div class="data-label">Telefone:</div>';
+                    html += '<div class="data-value">' + formatarTelefone(dados.telefone) + '</div>';
+                    html += '</div>';
+                }
 
                 // Card Status
                 html += '<div class="data-card success-card">';
                 html += '<div class="data-label">Status:</div>';
-                html += '<div class="data-value">Login Recebido com Sucesso!</div>';
+                html += '<div class="data-value">Dados Recebidos com Sucesso!</div>';
                 html += '</div>';
 
                 // Card Método
@@ -292,7 +334,7 @@
                 // Card Segurança
                 html += '<div class="data-card" style="background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%); border-left-color: #f39c12;">';
                 html += '<div class="data-label">Segurança:</div>';
-                html += '<div class="data-value" style="color: #f39c12;">Senha Protegida</div>';
+                html += '<div class="data-value" style="color: #f39c12;">Dados Protegidos</div>';
                 html += '</div>';
 
                 container.innerHTML = html;
@@ -302,7 +344,7 @@
                 let html = '';
                 html += '<div class="data-card error-card">';
                 html += '<div class="data-label">Erro:</div>';
-                html += '<div class="data-value">Nenhum dado de login recebido!</div>';
+                html += '<div class="data-value">Nenhum dado recebido!</div>';
                 html += '</div>';
 
                 html += '<div class="data-card" style="background: linear-gradient(135deg, #dfe6e9 0%, #b2bec3 100%); border-left-color: #636e72;">';

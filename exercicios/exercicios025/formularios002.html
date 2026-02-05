@@ -87,7 +87,9 @@
         }
 
         input[type="text"],
-        input[type="password"] {
+        input[type="password"],
+        input[type="email"],
+        input[type="tel"] {
             width: 100%;
             padding: 15px;
             border: 2px solid #e0e0e0;
@@ -98,7 +100,9 @@
         }
 
         input[type="text"]:focus,
-        input[type="password"]:focus {
+        input[type="password"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
             outline: none;
             border-color: #667eea;
             box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
@@ -106,7 +110,9 @@
         }
 
         input[type="text"]:hover,
-        input[type="password"]:hover {
+        input[type="password"]:hover,
+        input[type="email"]:hover,
+        input[type="tel"]:hover {
             border-color: #764ba2;
         }
 
@@ -211,6 +217,13 @@
             <p><label for="isen">senha:</label>
                 <input type="password" name="sen" id="isen" required maxlength="10" minlength="4" size="9"
                     placeholder="minimo 4 letras" autocomplete="current-password">
+            </p>
+            <p><label for="iemail">email:</label>
+                <input type="email" name="email" id="iemail" required placeholder="seu@email.com" autocomplete="email">
+            </p>
+            <p><label for="itelefone">telefone:</label>
+                <input type="tel" name="tel" id="itelefone" required placeholder="(00) 00000-0000" autocomplete="tel"
+                    pattern="\([0-9]{2}\)[0-9]{5}-[0-9]{4}">
             </p>
             <p>
                 <input type="submit" value="enviar">
