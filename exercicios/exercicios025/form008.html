@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario 008</title>
+</head>
+<body>
+    <h1>Formulario 008</h1>
+    <label for="in1">numero 1:</label>
+    <input type="number" id="in1" min="0" max="50"  required oninput="isoma.innerHTML = Number(in1.value) + Number(in2.value)">
+
+    <p>
+        <label for="in2">numero 2:</label>
+        <input type="number" id="in2" min="0" max="50"  required  oninput="isoma.innerHTML = Number(in1.value) + Number(in2.value)"
+    </p>
+
+    <p>
+        <label for="isoma">soma:</label>
+        <output id="isoma" name="soma"></output>
+    </p>
+
+    <p>
+        <input type="submit" value="Enviar">
+        <input type="reset" value="Limpar">
+    </p>
+</body>
+</html>

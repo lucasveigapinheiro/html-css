@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>formulario 007</title>
+</head>
+<body>
+    <h1>Exemplo de formulario</h1>
+
+    <form action="resultado003.html" method="post" autocomplete="on"></form>
+    <p>
+      <label for="iest">estado</label>
+      <select name="estado" id="iest">
+        <optgroup label="sudeste">
+          <option value="sp">São Paulo</option>
+          <option value="rj">Rio de Janeiro</option>
+          <option value="mg">Minas Gerais</option>
+        </optgroup>
+        <optgroup label="sul">
+          <option value="rs">Rio Grande do Sul</option>
+          <option value="sc">Santa Catarina</option>
+          <option value="pr">Paraná</option>
+        </optgroup>
+      </select>
+    </p>
+    <p>
+      <label for="iprof">profissão</label>
+      <input type="text" name="prof" id="iprof" list="lstprof">
+      <datalist id="lstprof">
+        <option value="programador"></option>
+        <option value="designer"></option>
+        <option value="analista"></option>
+      </datalist>
+    </p>
+    
+    <p>
+      <label for="imsg">mensagem</label><br>
+      <textarea name="msg" id="imsg" cols="30" rows="10"></textarea>
+    </p>
+
+
+
+    <p>
+        <input type="submit" value="enviar">
+        <input type="reset" value="limpar">
+    </p>
+</body>
+</html>
