@@ -66,12 +66,13 @@ menu>ul>li>a:hover {
 }
 
 main {
-    width: 85vw;
+    width: 70vw;
     background-color: white;
     margin: auto;
     margin-top: 0px;
     padding: 10px;
     border-radius: 0px 0px 5px 5px;
+    margin-bottom: 50px;
 }
 
 article>h2 {
@@ -89,6 +90,10 @@ footer {
     text-align: center;
     padding: 10px;
     margin-top: 0;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
 
 footer p {
