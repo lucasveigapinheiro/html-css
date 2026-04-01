@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<html lang= pt-BR>
+<head>
+    <meta charset=UTF-8>
+    <meta name=viewport content=width=device-width initial-scale=1.0>
+    <title>Relógio Mundial</title>
+    <style>
+        :root {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            color: #0f172a;
+            background: #f8fafc;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        main {
+            width: min(860px, 100%);
+            background: #fff;
+            border-radius: 16px;
+            box-shadow: 0 25px 60px rgba(15, 23, 42, 0.15);
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 2vw + 1rem, 2.5rem);
+        }
+
+        p {
+            margin: 0;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        .controls {
+            display: grid;
+            gap: 0.85rem;
+        }
+
+        label {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border-radius: 10px;
+            border: 1px solid #cbd5f5;
+            background: #f8fafc;
+            font-size: 1rem;
+            outline: none;
+            transition: border-color 0.2s ease;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #2563eb;
+            background: #fff;
+        }
+
+        .time-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        }
+
+        .clock-card {
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #ffffff, #e0eeff);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+        }
+
+        .clock-card h2 {
+            margin: 0 0 0.25rem;
+            font-size: 1rem;
+            color: #0f172a;
+        }
+
+        .clock-card .time-value {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1d4ed8;
+        }
+
+        .note {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <h1>Data e hora em tempo real</h1>
+        <p>Escolha um país ou fuso horário e veja a data e hora atualizados automaticamente a cada segundo com base no horário escolhido.</p>
+        <div class=controls>
+            <label for=timeZoneSearch>Pesquisar país ou fuso (ex: America/Sao_Paulo)</label>
+            <input id=timeZoneSearch list=timeZoneExamples type=search placeholder=Digite um país cidade ou IANA time zone autocomplete=off />
+            <datalist id=timeZoneExamples>
+                <option value=America/Sao_Paulo>Brasil (São Paulo)</option>
+                <option value=Europe/Lisbon>Portugal (Lisboa)</option>
+                <option value=America/New_York>Estados Unidos (Nova York)</option>
+                <option value=Asia/Tokyo>Japão (Tóquio)</option>
+                <option value=Australia/Sydney>Austrália (Sydney)</option>
+                <option value=Africa/Johannesburg>África do Sul (Johannesburg)</option>
+                <option value=Europe/Berlin>Alemanha (Berlim)</option>
+                <option value=Pacific/Auckland>Nova Zelândia (Auckland)</option>
+            </datalist>
+            <label for=timeZoneSelect>Fusos filtrados</label>
+            <select id=timeZoneSelect size=6 aria-label=Lista de fusos horários></select>
+        </div>
+        <div class=time-grid>
+            <div class=clock-card>
+                <h2>Horário selecionado</h2>
+                <p class=time-value id=customTime>Carregando...</p>
+                <p class=note id=customZone>-</p>
+            </div>
+            <div class=clock-card>
+                <h2>Hora local do navegador</h2>
+                <p class=time-value id=localTime>Carregando...</p>
+                <p class=note>Atualizada a cada segundo.</p>
+            </div>
+            <div class=clock-card>
+                <h2>Hora UTC</h2>
+                <p class=time-value id=utcTime>Carregando...</p>
+                <p class=note>Baseada no padrão mundial.</p>
+            </div>
+        </div>
+    </main>
+    <script>
+        const timeZoneSelect = document.getElementById('timeZoneSelect');
+        const searchInput = document.getElementById('timeZoneSearch');
+        const customTime = document.getElementById('customTime');
+        const customZone = document.getElementById('customZone');
+        const localTime = document.getElementById('localTime');
+        const utcTime = document.getElementById('utcTime');
+
+        const defaultZone = 'America/Sao_Paulo';
+        const supportedZones = Intl.supportedValuesOf ? Intl.supportedValuesOf('timeZone') : [
+            'America/Sao_Paulo','America/New_York','Europe/London','Europe/Paris','Europe/Berlin',
+            'Europe/Moscow','Asia/Tokyo','Asia/Shanghai','Asia/Dubai','Asia/Kolkata',
+            'Australia/Sydney','Australia/Perth','Pacific/Auckland','America/Los_Angeles',
+            'America/Mexico_City','America/Chicago','America/Denver','America/Toronto',
+            'Africa/Johannesburg','Africa/Cairo'
+        ];
+
+        function populateZoneList(filter = '') {
+            const normalized = filter.trim().toLowerCase();
+            const values = supportedZones.filter(zone => zone.toLowerCase().includes(normalized));
+            const fragment = document.createDocumentFragment();
+
+            const fallback = normalized ? 'Nenhum fuso encontrado' : 'Carregando fusos...';
+            if (!values.length) {
+                const option = document.createElement('option');
+                option.disabled = true;
+                option.textContent = fallback;
+                fragment.appendChild(option);
+            } else {
+                values.slice(0, 100).forEach(zone => {
+                    const option = document.createElement('option');
+                    option.value = zone;
+                    option.textContent = zone;
+                    fragment.appendChild(option);
+                });
+            }
+
+            timeZoneSelect.innerHTML = '';
+            timeZoneSelect.appendChild(fragment);
+
+            if (values.length) {
+                timeZoneSelect.value = values[0];
+            }
+        }
+
+        function formatDate(date, options) {
+            return new Intl.DateTimeFormat('pt-BR', options).format(date);
+        }
+
+        function updateTimes() {
+            const selectedZone = timeZoneSelect.value || defaultZone;
+            const now = new Date();
+
+            customTime.textContent = formatDate(now, {
+                dateStyle: 'full',
+                timeStyle: 'long',
+                timeZone: selectedZone
+            });
+            customZone.textContent = 'Fuso usado: ' + selectedZone;
+
+            localTime.textContent = formatDate(now, { dateStyle: 'full', timeStyle: 'long' });
+            utcTime.textContent = formatDate(now, { dateStyle: 'full', timeStyle: 'long', timeZone: 'UTC' });
+        }
+
+        searchInput.addEventListener('input', () => {
+            populateZoneList(searchInput.value);
+            updateTimes();
+        });
+
+        timeZoneSelect.addEventListener('change', updateTimes);
+
+        populateZoneList();
+        updateTimes();
+        setInterval(updateTimes, 1000);
+    </script>
+</body>
+</html>
